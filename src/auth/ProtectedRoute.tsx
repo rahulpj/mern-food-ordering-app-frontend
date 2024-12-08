@@ -7,11 +7,14 @@ const ProtectedRoute = () => {
 
   // Check if the authentication is still loading
   if (isLoading) {
-    return <div>Loading...</div>;
+    return null;
   }
 
-  // If authenticated, render the Outlet, otherwise navigate away
-  return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
+  if (isAuthenticated) {
+    return <Outlet />;
+  }
+
+  return <Navigate to="/" replace />;
 };
 
 export default ProtectedRoute;
